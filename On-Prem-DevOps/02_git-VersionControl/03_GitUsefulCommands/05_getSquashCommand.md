@@ -133,23 +133,6 @@ Save and exit.
 
 ---
 
-# Difference Between `squash` and `fixup`
-
-| Option   | Keeps Commit Messages?      | Opens Editor? |
-| -------- | --------------------------- | ------------- |
-| `squash` | Yes, combines messages      | Yes           |
-| `fixup`  | No, discards later messages | No            |
-
-Example:
-
-```text id="wmbpbr"
-pick abc123 Main commit
-fixup def456 Minor correction
-fixup ghi789 Typo fix
-```
-
----
-
 # Why Squash Commits?
 
 * Clean up many small commits
