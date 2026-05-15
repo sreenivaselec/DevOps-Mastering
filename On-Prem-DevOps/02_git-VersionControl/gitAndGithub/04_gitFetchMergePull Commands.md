@@ -129,6 +129,203 @@ git rebase
 
 This keeps history more linear by replaying local commits on top of the updated remote branch.
 
+# `git pull --rebase` Example
+
+`git pull --rebase` is used when:
+
+1. Someone has pushed new commits to the remote branch.
+2. You have local commits that have not been pushed yet.
+3. You want to place your local commits on top of the latest remote changes, creating a clean, linear history.
+
+---
+
+# Initial Situation
+
+Both your local branch and the remote branch start at commit `A`.
+
+```text
+A
+```
+
+---
+
+# Remote Changes
+
+Another developer pushes commit `B` to [GitHub](https://github.com?utm_source=chatgpt.com).
+
+```text
+A → B
+```
+
+---
+
+# Your Local Changes
+
+You create a local commit `C`.
+
+```text
+A → C
+```
+
+---
+
+# Before Running `git pull --rebase`
+
+```text
+Remote main (origin/main): A → B
+Local main:                A → C
+```
+
+The histories have diverged.
+
+---
+
+# What Happens with `git pull`
+
+```bash
+git pull
+```
+
+Equivalent to fetch + merge. Git creates a merge commit.
+
+```text
+A → B → M
+ \     /
+  C ---
+```
+
+`M` is the merge commit.
+
+---
+
+# What Happens with `git pull --rebase`
+
+```bash
+git pull --rebase
+```
+
+Equivalent to:
+
+```bash
+git fetch origin
+git rebase origin/main
+```
+
+Git performs these steps:
+
+1. Temporarily removes your local commit `C`.
+2. Updates your branch to `B`.
+3. Replays your changes as a new commit (`C'`) on top of `B`.
+
+Final history:
+
+```text
+A → B → C'
+```
+
+---
+
+# Why the Commit Name Changes
+
+`C'` represents the same code changes as `C`, but it is a newly created commit with a different commit ID.
+
+---
+
+# Practical Demonstration
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/kmit-project.git
+cd kmit-project
+
+# Make a local change
+echo "Local change" >> app.js
+git add .
+git commit -m "My local update"
+
+# Incorporate remote updates and replay your commit
+git pull --rebase
+```
+
+---
+
+# Example Output
+
+```text
+First, rewinding head to replay your work on top of it...
+Applying: My local update
+```
+
+---
+
+# If a Conflict Occurs
+
+Resolve the conflicted files, then run:
+
+```bash
+git add .
+git rebase --continue
+```
+
+To cancel the rebase:
+
+```bash
+git rebase --abort
+```
+
+---
+
+# Comparison
+
+## `git pull` (Merge)
+
+```text
+A → B → M
+ \     /
+  C ---
+```
+
+## `git pull --rebase`
+
+```text
+A → B → C'
+```
+
+---
+
+# Benefits of `git pull --rebase`
+
+* Produces a cleaner, linear history
+* Avoids unnecessary merge commits
+* Makes `git log` easier to read
+* Common in collaborative workflows
+
+---
+
+# Configure Git to Use Rebase Automatically
+
+```bash
+git config --global pull.rebase true
+```
+
+After this setting, a plain `git pull` behaves like `git pull --rebase`.
+
+---
+
+# Summary
+
+```bash
+git pull --rebase
+```
+
+* Fetches the latest remote commits
+* Replays your local commits on top of them
+* Creates a linear commit history
+* Rewrites your local commit IDs
+
+This command is especially useful when you have local commits that are not yet pushed and you want to integrate upstream changes cleanly.
+
+
 ---
 
 # Visual Example
