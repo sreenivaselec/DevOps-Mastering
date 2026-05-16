@@ -47,7 +47,7 @@ main
 # Create a Worktree for `dev`
 
 ```bash
-git worktree add ../kmit-project-dev dev
+git worktree add kmit-project-dev dev
 ```
 
 This creates:
@@ -75,7 +75,7 @@ Shared Git Repository Data (.git)
 # Create a New Branch and Worktree Together
 
 ```bash
-git worktree add -b feature-api ../kmit-project-api
+git worktree add -b feature-api kmit-project-api
 ```
 
 This:
@@ -104,7 +104,7 @@ C:/Projects/kmit-project-dev    def5678 [dev]
 # Remove a Worktree
 
 ```bash
-git worktree remove ../kmit-project-dev
+git worktree remove kmit-project-dev
 ```
 
 This removes the additional working directory but leaves the branch and commits intact.
@@ -143,7 +143,7 @@ git branch
 git worktree add ../kmit-project-dev dev
 
 # Open the new directory
-cd ../kmit-project-dev
+cd kmit-project-dev
 git branch
 ```
 
