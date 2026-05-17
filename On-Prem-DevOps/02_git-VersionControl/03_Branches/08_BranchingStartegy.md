@@ -60,6 +60,7 @@ develop
  ├── feature/dashboard
  └── release/v1.0
 ```
+<img width="1536" height="1024" alt="AdobeExpressPhotos_8048c9c6b3ff4c05bd16e2bd626fcc55_CopyEdited" src="https://github.com/user-attachments/assets/812258b0-3d01-44f9-82b8-4c14bc552a75" />
 
 ## Workflow
 
