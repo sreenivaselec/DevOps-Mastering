@@ -191,16 +191,6 @@ git stash show -p
 
 ---
 
-# Create a Branch from a Stash
-
-```bash
-git stash branch feature-test stash@{0}
-```
-
-This creates a new branch, applies the stash, and removes it from the stash list if successful.
-
----
-
 # Difference Between Apply and Pop
 
 | Command           | Restores Changes | Removes Stash |
@@ -231,7 +221,6 @@ git stash pop
 git stash drop stash@{0}
 git stash clear
 git stash -u
-git stash branch new-feature
 ```
 
 ---
